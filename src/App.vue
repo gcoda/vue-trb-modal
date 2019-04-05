@@ -1,25 +1,41 @@
 <template>
   <div id="app">
-    <modal>
+    <modal tag="div">
       <template #activator="{on}">
         <h1 v-on="on">click</h1>
       </template>
       <h2>on click</h2>
     </modal>
-    <modal hover>
+    <modal tag="div" hover>
       <template #activator="{on}">
         <h1 v-on="on">mouse enter</h1>
       </template>
       <h2>on hover</h2>
     </modal>
-    <modal tag="ul" class="orange" :toggle-on-click="false">
-      <template #activator="{on, active, hide}">
-        <li v-on="on">inside ul.orange &gt; li</li>
-        <ul v-if="active">
-          <li @click="hide">close button</li>
+
+    <modal hover>
+      <template #activator="{on}">
+        <span class="orange" v-on="on">renderless</span>
+      </template>
+      <template v-slot="{on, hide}">
+        <span v-on="on">
+          renderless
+          <b @click.stop="hide">close</b>
+        </span>
+      </template>
+    </modal>
+    <modal>
+      <template #activator="{on}">
+        <ul class="not">
+          <li v-on="on">renderless</li>
         </ul>
       </template>
-      <h2>toggleOnClick="false"</h2>
+      <template v-slot="{hide}">
+        <div>
+          <a>#default slot</a>
+          <i @click="hide">close</i>
+        </div>
+      </template>
     </modal>
   </div>
 </template>
@@ -30,8 +46,8 @@ import Modal from './components/Modal.vue'
 export default {
   name: 'app',
   components: {
-    Modal
-  }
+    Modal,
+  },
 }
 </script>
 
