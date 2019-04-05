@@ -1,6 +1,6 @@
 {
   "name": "vue-trb-modal",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "main": "dist/vue-trb-modal.umd.js",
   "module": "dist/vue-trb-modal.esm.js",
   "unpkg": "dist/vue-trb-modal.min.js",

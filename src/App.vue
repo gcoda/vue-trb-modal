@@ -36,7 +36,9 @@ export default {
 </script>
 
 <style>
-
+.orange {
+  color: #ff9900;
+}
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
