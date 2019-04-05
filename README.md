@@ -17,10 +17,12 @@
       </template>
       <h2>on hover</h2>
     </modal>
-    <modal tag="li" class="orange" :toggle-on-click="false">
+    <modal tag="ul" class="orange" :toggle-on-click="false">
       <template #activator="{on, active, hide}">
-        <h1 v-on="on">inside li.orange</h1>
-        <h3 v-if="active" @click="hide">close button</h3>
+        <li v-on="on">inside ul.orange &gt; li</li>
+        <ul v-if="active">
+          <li @click="hide">close button</li>
+        </ul>
       </template>
       <h2>toggleOnClick="false"</h2>
     </modal>
