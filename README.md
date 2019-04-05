@@ -1,17 +1,17 @@
-# vue-trb-modal
+# Renderless Modal/Toggle Vue Component
 
-`npm i --save vue-trb-modal@1.0.2`
+`npm i --save vue-trb-modal@1.0.7`
 
 ```html
 <template>
   <div>
-    <modal>
+    <modal tag="div">
       <template #activator="{on}">
         <h1 v-on="on">click</h1>
       </template>
       <h2>on click</h2>
     </modal>
-    <modal hover>
+    <modal tag="div" hover>
       <template #activator="{on}">
         <h1 v-on="on">mouse enter</h1>
       </template>
