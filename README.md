@@ -1,29 +1,38 @@
-# trb-modal
+# vue-trb-modal
 
-## Project setup
-```
-npm install
-```
+`npm i --save vue-trb-modal@1.0.2`
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+```html
+<template>
+  <div>
+    <modal>
+      <template #activator="{on}">
+        <h1 v-on="on">click</h1>
+      </template>
+      <h2>on click</h2>
+    </modal>
+    <modal hover>
+      <template #activator="{on}">
+        <h1 v-on="on">mouse enter</h1>
+      </template>
+      <h2>on hover</h2>
+    </modal>
+    <modal tag="li" class="orange" :toggle-on-click="false">
+      <template #activator="{on, active, hide}">
+        <h1 v-on="on">inside li.orange</h1>
+        <h3 v-if="active" @click="hide">close button</h3>
+      </template>
+      <h2>toggleOnClick="false"</h2>
+    </modal>
+  </div>
+</template>
 
-### Compiles and minifies for production
+<script>
+import Modal from 'vue-trb-modal'
+export default {
+  components: {
+    Modal,
+  },
+}
+</script>
 ```
-npm run build
-```
-
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
