@@ -1,6 +1,6 @@
 module.exports = {
   lintOnSave: false,
-  outputDir: '/demo',
+  outputDir: 'demo',
   chainWebpack: config => {
     // GraphQL Loader
     config.module
