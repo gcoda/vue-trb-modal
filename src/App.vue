@@ -80,6 +80,7 @@
         </modal>
       </div>
     </div>
+    <a href='https://github.com/gcoda/vue-trb-modal/blob/master/src/App.vue'> github source</a>
   </div>
 </template>
 
@@ -101,6 +102,11 @@ body {
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+a:hover {
+  @apply text-blue-500
+}
+
 .example {
   @apply w-1/4 m-4 border rounded;
 }
