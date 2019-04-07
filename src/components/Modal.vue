@@ -4,7 +4,7 @@ export default {
     tag: { type: String },
     hover: { type: Boolean, default: false },
     toggleOnClick: { type: Boolean, default: true },
-    // render: { type: Boolean, default: true },
+    keepActive: { type: Boolean, default: false },
   },
   data: () => ({
     active: false,
@@ -14,20 +14,20 @@ export default {
       on: Object.assign(
         {
           click: () => {
-            this.active = this.toggleOnClick
-              ? (this.active = !this.active)
-              : true
+            this.active =
+              this.toggleOnClick && !this.keepActive
+                ? (this.active = !this.active)
+                : true
           },
         },
         this.hover
           ? {
               mouseenter: () => (this.active = true),
               // mouseover: () => this.active = true,
-              mouseleave: () => (this.active = false),
+              mouseleave: () => (this.active = this.keepActive),
             }
           : {}
       ),
-      open: this.active,
       active: this.active,
       show: () => {
         this.active = true
@@ -40,28 +40,26 @@ export default {
       },
     }
 
-    const activator = this.$scopedSlots.activator
+    const slot = this.$scopedSlots.activator
       ? this.$scopedSlots.activator(scope)
-      : h('div', 'should contain <template #activator></template>')
+      : this.$scopedSlots.default(scope)
 
-    return this.tag
-      ? h(
-          this.tag,
-          { attrs: this.$attrs },
-          this.active
+    if (!this.tag) {
+      return this.active ? this.$scopedSlots.default(scope) : slot
+    } else {
+      return h(
+        this.tag,
+        { attrs: this.$attrs },
+        this.active
+          ? this.$scopedSlots.activator
             ? [
-                activator,
-                ...(this.$scopedSlots.default
-                  ? this.$scopedSlots.default(scope)
-                  : []),
+                this.$scopedSlots.activator(scope),
+                this.$scopedSlots.default(scope),
               ]
-            : activator
-        )
-      : this.active
-      ? this.$scopedSlots.default
-        ? this.$scopedSlots.default(scope)
-        : activator
-      : activator
+            : this.$scopedSlots.default(scope)
+          : slot
+      )
+    }
   },
 }
 </script>
